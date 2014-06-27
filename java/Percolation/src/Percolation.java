@@ -6,7 +6,7 @@
 
 /**
  * This models the Percolation problem.
- * */
+ */
 public final class Percolation
 {
 	/**
@@ -25,8 +25,11 @@ public final class Percolation
 		model = new WeightedQuickUnionUF(size);
 	}
 	
+	// Allocates a byte array on the heap
+	// The first and last element are open.
 	private byte[] initArray()
 	{
+		// a byte size array: snicker, snicker
 		byte[] byteArray = new byte[size];
 		for (int i = 0; i != byteArray.length; ++i)
 		{
