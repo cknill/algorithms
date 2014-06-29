@@ -58,6 +58,20 @@ public final class RandomizedQueue<T> implements Iterable<T>
 		return new RandomQueueIterator();
 	}
 	
+	private void resize(int capacity)
+	{
+		StdRandom.shuffle(impl);
+		int head_copy = head;
+		T[] copy = (T[])new Object[capacity];
+		for (int i = 0; i != count; ++i, ++head_copy)
+		{
+			copy[i] = impl[head_copy];
+		}
+
+		impl = copy;
+		head = 0;
+	}
+	
 	private T[] impl;
 	private int count;
 	private int front;
