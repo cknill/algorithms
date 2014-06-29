@@ -62,12 +62,12 @@ public final class PercolationStats
 	
 	public double confidenceLo()
 	{
-		return 0.0;
+		return avg - ((1.96*dev)/Math.sqrt(numTrials));
 	}
 	
 	public double confidenceHi()
 	{
-		return 0.0;
+		return avg + ((1.96*dev)/Math.sqrt(numTrials));
 	}
 
 	private final int gridDim;
