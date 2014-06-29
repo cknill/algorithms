@@ -1,7 +1,6 @@
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-
 public final class RandomizedQueue<T>
 	implements Iterable<T>
 {
@@ -11,21 +10,22 @@ public final class RandomizedQueue<T>
 	{
 		count = 0;
 		front = 0;
+		tail = 0;
 		impl = (T[]) new Object[1];
 	}
-	
+
 	// Tests whether the queue is empty or not.
 	public boolean isEmpty()
 	{
 		return count == 0;
 	}
-	
+
 	// Tells how many elements are on the queue
 	public int size()
 	{
 		return count;
 	}
-	
+
 	// puts an element on the queue
 	public void enqueue(T elem)
 	{
@@ -40,10 +40,10 @@ public final class RandomizedQueue<T>
 		{
 			resize(impl.length*2);
 		}
-		
-		// put elem at the end of the queue
-		impl[count++] = elem;
 
+		// put elem at the end of the queue
+		impl[tail++] = elem;
+		count++;
 	}
 	
 	// Removes an element from the queue
@@ -91,11 +91,13 @@ public final class RandomizedQueue<T>
 
 		impl = copy;
 		head = 0;
+		tail = cout;
 	}
 	
 	private T[] impl;
 	private int count;
 	private int front;
+	private int tail;
 	
 	private final class RandomQueueIterator
 		implements Iterator<T>
@@ -126,7 +128,7 @@ public final class RandomizedQueue<T>
 				throw new NoSuchElementException("Queue is empty!");
 			}
 
-			return repr[indices[curr++]];
+			return impl[indices[curr++]];
 		}
 
 		@Override
