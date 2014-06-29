@@ -49,7 +49,7 @@ public final class RandomizedQueue<T> implements Iterable<T>
 	// Returns a random entry in the queue, does not remove it.
 	public T sample()
 	{
-		return null;
+		return impl[StdRandom.uniform(0, count+1)];
 	}
 
 	@Override
@@ -61,7 +61,6 @@ public final class RandomizedQueue<T> implements Iterable<T>
 	private T[] impl;
 	private int count;
 	private int front;
-	private int end;
 	
 	private final class RandomQueueIterator implements Iterator<T>
 	{
