@@ -40,10 +40,19 @@ public final class RandomizedQueue<T> implements Iterable<T>
 	{
 		if (isEmpty())
 		{
-			throw new NoSuchElementException();
+			throw new NoSuchElementException("Queue is empty!");
 		}
 
-		return null;
+		// If count is 1/4 size of queue resize by one half
+		if (!isEmpty() && repr.length / 4 == count)
+		{
+			resize(repr.length/2);
+		}
+		
+		T elem = repr[head++];
+		--count;
+
+		return elem;
 	}
 
 	// Returns a random entry in the queue, does not remove it.
