@@ -2,7 +2,8 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 
-public final class RandomizedQueue<T> implements Iterable<T>
+public final class RandomizedQueue<T>
+	implements Iterable<T>
 {
 	// Constructs an empty queue
 	@SupressWarnings("unchecked")
@@ -96,7 +97,8 @@ public final class RandomizedQueue<T> implements Iterable<T>
 	private int count;
 	private int front;
 	
-	private final class RandomQueueIterator implements Iterator<T>
+	private final class RandomQueueIterator
+		implements Iterator<T>
 	{
 		public RandomQueueIterator()
 		{
