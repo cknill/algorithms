@@ -8,8 +8,8 @@ public final class RandomizedQueue<T> implements Iterable<T>
 	public RandomizedQueue()
 	{
 		count = 0;
-		front = -1;
-		end = -1;
+		front = 0;
+		impl = (T[]) new Object[1];
 	}
 	
 	// Tests whether the queue is empty or not.
@@ -58,6 +58,7 @@ public final class RandomizedQueue<T> implements Iterable<T>
 		return new RandomQueueIterator();
 	}
 	
+	private T[] impl;
 	private int count;
 	private int front;
 	private int end;
