@@ -27,12 +27,21 @@ public final class RandomizedQueue<T> implements Iterable<T>
 	// puts an element on the queue
 	public void enqueue(T elem)
 	{
+		// Do not put null elements in the queue
 		if (elem == null)
 		{
-			throw new NullPointerException();
+			throw new NullPointerException("Don't put nulls on the queue!");
 		}
 
-		;
+		// If the queue is full, resize it.
+		if (count == impl.length)
+		{
+			resize(impl.length*2);
+		}
+		
+		// put elem at the end of the queue
+		impl[count++] = elem;
+
 	}
 	
 	// Removes an element from the queue
@@ -44,12 +53,12 @@ public final class RandomizedQueue<T> implements Iterable<T>
 		}
 
 		// If count is 1/4 size of queue resize by one half
-		if (!isEmpty() && repr.length / 4 == count)
+		if (!isEmpty() && impl.length / 4 == count)
 		{
-			resize(repr.length/2);
+			resize(impl.impl/2);
 		}
 		
-		T elem = repr[head++];
+		T elem = impl[head++];
 		--count;
 
 		return elem;
