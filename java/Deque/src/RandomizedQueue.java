@@ -5,6 +5,7 @@ import java.util.NoSuchElementException;
 public final class RandomizedQueue<T> implements Iterable<T>
 {
 	// Constructs an empty queue
+	@SupressWarnings("unchecked")
 	public RandomizedQueue()
 	{
 		count = 0;
@@ -76,6 +77,7 @@ public final class RandomizedQueue<T> implements Iterable<T>
 		return new RandomQueueIterator();
 	}
 	
+	@SupressWarnings("unchecked")
 	private void resize(int capacity)
 	{
 		StdRandom.shuffle(impl);
@@ -98,14 +100,20 @@ public final class RandomizedQueue<T> implements Iterable<T>
 	{
 		public RandomQueueIterator()
 		{
-			;
+			curr = 0;
+			indices = new int[count];
+			for (int i = 0; i != count; ++i)
+			{
+				indices[i] = i;
+			}
+
+			StdRandom.shuffle(indices);
 		}
 
 		@Override
 		public boolean hasNext()
 		{
-			// TODO Auto-generated method stub
-			return false;
+			return curr != count;
 		}
 
 		@Override
@@ -113,17 +121,20 @@ public final class RandomizedQueue<T> implements Iterable<T>
 		{
 			if (isEmpty())
 			{
-				throw new NoSuchElementException();
+				throw new NoSuchElementException("Queue is empty!");
 			}
-			// TODO Auto-generated method stub
-			return null;
+
+			return repr[indices[curr++]];
 		}
 
 		@Override
 		public void remove()
 		{
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("Remove is bad news!");
 		}
+
+		int[] indices;
+		int curr;
 	}
 
 	/**
